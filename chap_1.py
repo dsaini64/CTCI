@@ -40,7 +40,29 @@ def palindromePermutation(s: str) -> bool:
     return True
 #1.5
 def oneAway(s: str, t:str) -> bool:
-   return True
+    if abs(len(s) - len(t)) > 1:
+       return False
+    if len(s) > len(t):
+       s, t = t, s
+    ptr1 = ptr2 = 0
+    found_diff = False
+    while ptr1 < len(s) and ptr2 < len(t):
+        if s[ptr1] != t[ptr2]:
+            if found_diff:
+                return False
+            found_diff = True
+
+            if len(s) != len(t):
+                ptr2 += 1
+        else:
+            ptr1 += 1
+            ptr2 += 1
+
+    return True
+
+
+
+   
     
 
 
