@@ -38,6 +38,7 @@ def palindromePermutation(s: str) -> bool:
             odd_count += 1
     
     return True
+
 #1.5
 def oneAway(s: str, t: str) -> bool:
     if abs(len(s) - len(t)) > 1:
@@ -75,16 +76,3 @@ def stringCompression(s: str) -> str:
 
     compressed = "".join(ans)
     return compressed if len(compressed) < len(s) else s
-
-
-
-
-   
-    
-
-
-
-
-
-
-
