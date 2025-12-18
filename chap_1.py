@@ -39,7 +39,7 @@ def palindromePermutation(s: str) -> bool:
     
     return True
 #1.5
-def oneAway(s: str, t:str) -> bool:
+def oneAway(s: str, t: str) -> bool:
     if abs(len(s) - len(t)) > 1:
        return False
     if len(s) > len(t):
@@ -59,6 +59,23 @@ def oneAway(s: str, t:str) -> bool:
             ptr2 += 1
 
     return True
+
+#1.6
+def stringCompression(s: str) -> str:
+    if len(s) <= 1:
+        return s
+    ans = []
+    ptr1 = ptr2 = 0
+    while ptr1 < len(s):
+        while ptr2 < len(s) and s[ptr2] == s[ptr1]:
+            ptr2 += 1
+        ans.append(s[ptr1])
+        ans.append(str(ptr2 - ptr1))
+        ptr1 = ptr2
+
+    compressed = "".join(ans)
+    return compressed if len(compressed) < len(s) else s
+
 
 
 
