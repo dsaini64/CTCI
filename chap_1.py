@@ -76,3 +76,51 @@ def stringCompression(s: str) -> str:
 
     compressed = "".join(ans)
     return compressed if len(compressed) < len(s) else s
+
+#1.7
+def rotateMatrix(m: list[list[int]]) -> None:
+    n = len(m)
+    if n == 0 or any(len(row) != n for row in m):
+        return
+    for layer in range(n // 2):
+        first = layer
+        last = n - 1 - layer
+        for i in range(first, last):
+            offset = i - first
+            top = m[first][i]
+            m[first][i] = m[last - offset][first]
+            m[last - offset][first] = m[last][last - offset]
+            m[last][last - offset] = m[i][last]
+            m[i][last] = top
+
+#1.8
+def zeroMatrix(m: list[list[int]]) -> None:
+    if not m or not m[0]:
+        return
+    def nullify_row(row: int) -> None:
+        for j in range(len(m[0])):
+            m[row][j] = 0
+    def nullify_col(col: int) -> None:
+        for i in range(len(m)):
+            m[i][col] = 0
+    zero_rows = set()
+    zero_columns = set()
+    for i in range(len(m)):
+        for j in range(len(m[0])):
+            if m[i][j] == 0:
+                zero_rows.add(i)
+                zero_columns.add(j)
+    for row in zero_rows:
+        nullify_row(row)
+    for col in zero_columns:
+        nullify_col(col)
+
+#1.9 
+def isRotation(s1: str, s2: str) -> bool:
+    def isSubstring(s1: str, s2: str) -> bool:
+        return s2 in s1
+    if len(s1) == len(s2) and len(s1) > 0:
+        s1s1 = s1 + s1
+        return isSubstring(s1s1, s2)
+    return False
+
